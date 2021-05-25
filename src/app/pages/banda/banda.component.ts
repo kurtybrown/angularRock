@@ -47,8 +47,11 @@ export class BandaComponent implements OnInit {
 
   addBand(form:NgForm)
   { 
-    // this.miCancion = form.value.song.slice(32,0)
-    // console.log(this.miCancion)
+    this.miCancion = form.value.song;
+    const slug = this.miCancion.split('https://www.youtube.com/watch?v='). pop()
+    
+    form.value.song = slug;
+    
     this.bandService.addBand(form.value).subscribe((resultado:any)=>
     {
       console.log(resultado);

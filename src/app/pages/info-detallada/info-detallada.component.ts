@@ -51,6 +51,12 @@ export class InfoDetalladaComponent implements OnInit {
 
   editBand(form: NgForm)
   {
+    
+    this.miCancion = form.value.song;
+    const slug = this.miCancion.split('https://www.youtube.com/watch?v='). pop()
+    
+    form.value.song = slug;
+    
     this.bandService.updateBand(this.bandService.id_band, form.value).subscribe((resultado:any)=>
     {
       this.bandService.newBand = resultado;
