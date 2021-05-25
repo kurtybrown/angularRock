@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Banda } from './models/band';
+import { BandsService } from './services/bands.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +12,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularRocks';
+
+  constructor(){}
+
+  
+
 }

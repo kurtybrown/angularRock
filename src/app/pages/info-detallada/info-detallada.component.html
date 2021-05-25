@@ -1,0 +1,103 @@
+<div class="row" style="margin-top: 100px;">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="card mb-3">
+            <h3 class="card-header">{{bandService.newBand.name}}</h3>
+            <img src="{{bandService.newBand.photo}}" class="d-block user-select-none" width="100%" height="300px" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Fundado en: {{bandService.newBand.foundation}} </li>
+              <li class="list-group-item">Estilos: {{bandService.newBand.styles}} </li>
+              <li class="list-group-item">Miembros: {{bandService.newBand.members}} </li>
+            </ul>
+            <div class="card-footer" style="justify-content: flex-end; padding-right: 10px; display: flex;">
+                <button class="btn btn-warning" (click)="show()">
+                    <i class="material-icons">edit</i>
+                </button>
+                <button class="btn btn-danger" (click) = "deleteBand(bandService.newBand._id)">
+                  <i class="material-icons">delete</i>
+                </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body" >
+                <youtube-player videoId="{{bandService.newBand.song}}"></youtube-player>     
+            </div>
+          </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+<!-- MODAL EDITAR -->
+
+<div class="modal" [style.display]="showForm ? 'block' : 'none'" style="padding-top: 100px; height: 100%;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar la banda</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="hide()">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #bandForm = "ngForm" (ngSubmit) = "editBand(bandForm)">
+                <fieldset>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="form-label mt-4">Foto</label>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      id="fotoBanda" 
+                      placeholder="Introduce una url" 
+                      name="photo" 
+                      [(ngModel)] = "bandService.newBand.photo"
+                      >
+                </div>
+                  <div class="form-group">
+                    <label for="exampleInputtext1" class="form-label mt-4">Nombre</label>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      id="nombreBanda" 
+                      placeholder="Nombre de la banda" 
+                      name = "name" 
+                      [(ngModel)] = "bandService.newBand.name">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputtext1" class="form-label mt-4">Fundación</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="fundacionBanda" 
+                        placeholder="Año de fundación de la banda" 
+                        name="foundation" 
+                        [(ngModel)] = "bandService.newBand.foundation">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelect2" class="form-label mt-4">Estilos</label>
+                
+                    <input type="text" class="form-control" name="styles" [(ngModel)] = "bandService.newBand.styles">  
+
+                 </div>
+                  <div class="form-group">
+                    <label for="exampleSelect2" class="form-label mt-4">Miembros</label>
+
+                    <input type="text" class="form-control" name="members" [(ngModel)] = "bandService.newBand.members">  
+
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputtext1" class="form-label mt-4">Canción</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="cancionBanda" 
+                        placeholder="Introduce una url de Youtube" 
+                        name="song" 
+                        [(ngModel)] = "bandService.newBand.song">
+                  </div>
+                </fieldset>
+                <button class="btn btn-primary" style="margin-top: 20px;">Guardar</button>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
